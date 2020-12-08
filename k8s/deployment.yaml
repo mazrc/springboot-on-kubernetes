@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-demo-app
+  name: k8s-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-demo-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-demo-app
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - image: localhost:32000/demo-beta1:registry
+          imagePullPolicy: "Always"
+          name: demo-container
+          resources: {}
+status: {}
