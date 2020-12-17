@@ -4,18 +4,27 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- azure-pipelines-test
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      mavenOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.11'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      goals: 'package'
+
+  - task: Maven@3
+    displayName: Build Docker image
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'spring-boot:build-image'
+      publishJUnitResults: false
+      jdkVersionOption: '1.11'
