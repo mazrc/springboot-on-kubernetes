@@ -19,6 +19,8 @@ steps:
       goals: 'spring-boot:build-image'
       publishJUnitResults: false
       jdkVersionOption: '1.11'
-  - task: CmdLine@2
-    inputs:
-      script: './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=k8s-demo'  
+
+- task: Docker@2
+  inputs:
+    command: 'save'
+    arguments: 'docker.io/library/k8s-demo:latest > k8s-demo.tar'
