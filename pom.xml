@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>objex/k8s-demo-app</artifactId>
+	<artifactId>k8s-demo-app</artifactId>
 	<version>latest</version>
 	<name>k8s-demo-app</name>
 	<description>Demo project for Spring Boot</description>
