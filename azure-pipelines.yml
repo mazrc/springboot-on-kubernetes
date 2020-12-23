@@ -4,7 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- azure-pipelines-test
+- master
+- releases/*
 
 pool:
   vmImage: 'ubuntu-latest'
