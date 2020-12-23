@@ -23,7 +23,7 @@ stages:
   displayName: Build and Tests
   jobs:
   - job: Build
-    displayName: Build artifact
+    displayName: Build Docker Image
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -52,4 +52,4 @@ stages:
         containerRegistry: 'lmescontainerregistry'
         repository: 'k8s-demo-app'
         command: 'push'
-        tags: 'latest'    
+        tags: '0.0.1-SNAPSHOT'    
