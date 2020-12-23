@@ -45,6 +45,7 @@ stages:
         goals: 'spring-boot:build-image'
         publishJUnitResults: false
         jdkVersionOption: '1.11'
+        options: '-Dspring-boot.build-image.imageName=objex/k8s-demo-app'
         
     - task: Docker@2
       displayName: Push Docker image
