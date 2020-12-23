@@ -37,10 +37,7 @@ stages:
     - task: Docker@0
       displayName: 'Run a Docker command'
       inputs:
-        containerregistrytype: 'Azure Container Registry'
-        azureSubscription: '************'
-        azureContainerRegistry: '************'
-        action: 'Run a Docker command'
+        action: 'Save docker image to a tar file'
         customCommand: 'image save k8s-demo-app:0.0.1-SNAPSHOT -o $(Build.ArtifactStagingDirectory)/$(artifact-name).tar'
 
     - publish:  $(Build.ArtifactStagingDirectory)
