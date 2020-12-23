@@ -46,6 +46,11 @@ stages:
         publishJUnitResults: false
         jdkVersionOption: '1.11'
 
+    - task: Docker@0
+      displayName: 'Save docker image to a tar file'
+      inputs:
+        customCommand: 'image save k8s-demo-app:0.0.1-SNAPSHOT -o $(Build.ArtifactStagingDirectory)/$(artifact-name).tar'
+          
     - publish:  $(Build.ArtifactStagingDirectory)
       artifact: docker-images
     
