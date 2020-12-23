@@ -50,7 +50,7 @@ stages:
       displayName: Push Docker image
       inputs:
         containerRegistry: 'lmescontainerregistry'
-        repository: '$(artifact-name)'
+        repository: 'objex/k8s-demo'
         command: 'push'
         tags: '0.0.1-SNAPSHOT'
 
