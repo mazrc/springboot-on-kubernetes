@@ -1,24 +1,40 @@
-# Maven
+# CI pipeline for Demo Spring boot service
+# Builds and save docker image of demo microservice
 
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+variables:
+  tag: $(Build.BuildId)
+  base: k8s-demo
+  artifact-name: k8s-demo-v01
+  servicename: K8s Demo Service
 
 trigger:
-- master
-- releases/*
+  branches:
+    include:
+    - qa
+    - master
+  paths:
+    include:
+    - $(base)/*
+    exclude:
+    - $(base)/README.md
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-  - task: Maven@3
-    displayName: Build Docker image
-    inputs:
-      mavenPomFile: 'pom.xml'
-      goals: 'spring-boot:build-image'
-      publishJUnitResults: false
-      jdkVersionOption: '1.11'
+stages:
+- stage: Build
+  displayName: Build and Tests
+  jobs:
+  - job: Build
+    displayName: Build artifact
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Maven@3
+      displayName: Build Docker image
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'spring-boot:build-image'
+        publishJUnitResults: false
+        jdkVersionOption: '1.11'
+  
+    - publish:  $(Build.ArtifactStagingDirectory)
+      artifact: docker-images
     
-  - publish:  $(Build.ArtifactStagingDirectory)
-    artifact: docker-images
