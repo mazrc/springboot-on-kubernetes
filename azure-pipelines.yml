@@ -1,4 +1,5 @@
 # Maven
+
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
@@ -22,15 +23,6 @@ steps:
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       goals: 'package'
 
-  - task: Maven@3
-    displayName: Build Docker image
+  - task: CmdLine@2
     inputs:
-      mavenPomFile: 'pom.xml'
-      goals: 'spring-boot:build-image'
-      publishJUnitResults: false
-      jdkVersionOption: '1.11'
-
-  - task: PublishBuildArtifacts@1    
-    displayName: 'Publish Artifact: drop'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
+      script: './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=k8s-demo'  
