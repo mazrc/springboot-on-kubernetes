@@ -24,7 +24,7 @@ steps:
     displayName: 'Save Docker Image'
     inputs:
       action: 'Run a Docker command'
-      customCommand: 'image save docker.io/library/k8s-demo:latest -o $(Build.ArtifactStagingDirectory)/k8s-demo.tar'
+      customCommand: 'save docker.io/library/k8s-demo:latest -o $(Build.ArtifactStagingDirectory)/k8s-demo.tar'
     
   - publish:  $(Build.ArtifactStagingDirectory)
     artifact: docker-images
