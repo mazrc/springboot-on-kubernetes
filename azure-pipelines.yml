@@ -4,7 +4,7 @@
 variables:
   tag: $(Build.BuildId)
   base: k8s-demo
-  artifact-name: k8s-demo-v01
+  artifact-name: k8s-demo-app
   servicename: K8s Demo Service
 
 trigger:
@@ -50,7 +50,7 @@ stages:
       displayName: Push Docker image
       inputs:
         containerRegistry: 'lmescontainerregistry'
-        repository: 'k8s-demo-app'
+        repository: '$(artifact-name)'
         command: 'push'
         tags: '0.0.1-SNAPSHOT'
 
