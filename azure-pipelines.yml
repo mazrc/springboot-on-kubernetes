@@ -12,7 +12,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
+  - task: Maven@3
+    displayName: Build Docker image
+    inputs:
+      mavenPomFile: 'pom.xml'
+      goals: 'spring-boot:build-image'
+      publishJUnitResults: false
+      jdkVersionOption: '1.11'
   - task: CmdLine@2
     inputs:
       script: './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=k8s-demo'  
