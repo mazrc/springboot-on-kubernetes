@@ -19,12 +19,6 @@ steps:
       goals: 'spring-boot:build-image'
       publishJUnitResults: false
       jdkVersionOption: '1.11'
-
-  - task: Docker@0
-    displayName: 'Save Docker Image'
-    inputs:
-      action: 'Run a Docker command'
-      customCommand: 'save docker.io/library/k8s-demo:latest -o $(Build.ArtifactStagingDirectory)/k8s-demo.tar'
     
   - publish:  $(Build.ArtifactStagingDirectory)
     artifact: docker-images
