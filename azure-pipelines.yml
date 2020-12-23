@@ -50,10 +50,6 @@ stages:
       displayName: Push Docker image
       inputs:
         containerRegistry: 'lmescontainerregistry'
-        repository: 'objex/k8s-demo'
+        repository: 'k8s-demo-app:0.0.1-SNAPSHOT'
         command: 'push'
-        tags: '0.0.1-SNAPSHOT'
-
-    - publish:  $(Build.ArtifactStagingDirectory)
-      artifact: docker-images
-    
+        tags: 'latest'    
