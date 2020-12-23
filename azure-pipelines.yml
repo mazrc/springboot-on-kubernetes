@@ -46,6 +46,7 @@ stages:
         publishJUnitResults: false
         jdkVersionOption: '1.11'
     - task: Docker@2
+      displayName: Docker login
       inputs:
         containerRegistry: 'lmescontainerregistry'
         command: 'login'
@@ -54,6 +55,6 @@ stages:
       displayName: Push Docker image
       inputs:
         containerRegistry: 'lmescontainerregistry'
-        repository: 'k8s-demo-app'
+        repository: 'objex/k8s-demo-app'
         command: 'push'
-        tags: '0.0.1-SNAPSHOT'    
+        tags: '0.0.1-SNAPSHOT'
