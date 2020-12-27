@@ -23,4 +23,6 @@ spec:
           imagePullPolicy: "Always"
           name: demo-container
           resources: {}
+      imagePullSecrets:
+      - name: regcred
 status: {}
