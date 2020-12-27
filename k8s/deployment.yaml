@@ -19,7 +19,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-        - image: objex/k8s-demo-app
+        - image: objex/k8s-demo-app:latest
           imagePullPolicy: "Always"
           name: demo-container
           resources: {}
