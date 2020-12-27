@@ -54,3 +54,14 @@ stages:
         repository: 'objex/k8s-demo-app'
         command: 'push'
         tags: 'latest'
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+      inputs:
+        SourceFolder: '$(system.defaultworkingdirectory)'
+        Contents: '**/*'
+        TargetFolder: '$(build.artifactstagingdirectory)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
