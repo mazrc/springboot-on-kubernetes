@@ -1,4 +1,3 @@
-#!/bin/bash
 
 if [[ $# -lt 4 ]] ; then
     echo 'Valid arguments: ./deploy.sh serviceName serviceVersion 192.168.64.2:32000 k8DeploymentName'
