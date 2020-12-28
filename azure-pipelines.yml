@@ -48,13 +48,13 @@ stages:
         jdkVersionOption: '1.11'
         options: '-Dspring-boot.build-image.imageName=objex/k8s-demo-app'
         
-    - task: Docker@2
-      displayName: Push Docker image
-      inputs:
-        containerRegistry: 'lmescontainerregistry'
-        repository: 'objex/k8s-demo-app'
-        command: 'push'
-        tags: 'latest'
+    # - task: Docker@2
+    #   displayName: Push Docker image
+    #   inputs:
+    #     containerRegistry: 'lmescontainerregistry'
+    #     repository: 'objex/k8s-demo-app'
+    #     command: 'push'
+    #     tags: 'latest'
     - task: CmdLine@2
       displayName: Docker image save
       inputs:
