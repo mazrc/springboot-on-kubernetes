@@ -1,4 +1,5 @@
 # CI pipeline for Demo Spring boot service
+
 # Builds and save docker image of demo microservice
 
 variables:
@@ -54,10 +55,10 @@ stages:
         repository: 'objex/k8s-demo-app'
         command: 'push'
         tags: 'latest'
-    - task: Docker@0
-      displayName: Save Docker image to tar file
+    - task: CmdLine@2
       inputs:
-        customCommand: 'image save objex/k8s-demo-app:latest -o $(Build.ArtifactStagingDirectory)/microservice.tar'
+        script: 'docker version'
+        # 'image save objex/k8s-demo-app:latest -o $(Build.ArtifactStagingDirectory)/microservice.tar'
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
       inputs:
