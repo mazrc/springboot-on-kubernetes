@@ -56,9 +56,10 @@ stages:
         command: 'push'
         tags: 'latest'
     - task: CmdLine@2
+      displayName: Docker image save
       inputs:
-        script: 'docker version'
-        # 'image save objex/k8s-demo-app:latest -o $(Build.ArtifactStagingDirectory)/microservice.tar'
+        script: 'docker image save objex/k8s-demo-app:latest -o $(Build.ArtifactStagingDirectory)/microservice.tar'
+        
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
       inputs:
