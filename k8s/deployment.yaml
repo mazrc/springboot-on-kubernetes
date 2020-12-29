@@ -19,9 +19,9 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-        - image: objex/k8s-demo-app:latest
+        - name: demo-container
+          image: objex/k8s-demo-app:latest
           imagePullPolicy: "Always"
-          name: demo-container
           resources: {}
       imagePullSecrets:
       - name: regcred
