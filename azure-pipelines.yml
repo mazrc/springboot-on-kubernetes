@@ -65,6 +65,7 @@ stages:
       inputs:
         SourceFolder: '$(system.defaultworkingdirectory)'
         Contents: |
+          k8s
           microservice.tar
           *.sh
         TargetFolder: '$(build.artifactstagingdirectory)'
