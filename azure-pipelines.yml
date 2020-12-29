@@ -1,4 +1,5 @@
 # CI pipeline for Demo Spring boot service
+
 # Builds and save docker image of demo microservice
 
 variables:
@@ -10,7 +11,7 @@ variables:
 trigger:
   branches:
     include:
-    - qa
+    - azure-pipelines-test
     - master
   paths:
     include:
@@ -54,11 +55,19 @@ stages:
         repository: 'objex/k8s-demo-app'
         command: 'push'
         tags: 'latest'
+
+    # - task: CmdLine@2
+    #   displayName: Docker image save
+    #   inputs:
+    #     script: 'docker image save objex/k8s-demo-app:latest -o $(Build.ArtifactStagingDirectory)/microservice.tar'
+        
     - task: CopyFiles@2
       displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
       inputs:
         SourceFolder: '$(system.defaultworkingdirectory)'
-        Contents: '**/*'
+        Contents: |
+          k8s/**/*
+          *.sh
         TargetFolder: '$(build.artifactstagingdirectory)'
 
     - task: PublishBuildArtifacts@1
